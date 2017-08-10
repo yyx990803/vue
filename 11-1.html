@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    body {
+        height: 800px;
+    }
+    .big {
+        width: 300px;
+        height: 300px;
+        background-color: pink;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="alert('ok')">点击</button>
+        <button v-on:click="fun">点击</button>
+        <button v-on:click="fun()">点击v-on:click</button>
+        <button @click="fun">简写点击事件@click</button>
+        <br>
+        <br>
+        <!-- $event $固定写法 -->
+        <div class="big" @click="getPoint($event)" @mouseover="over()" @mouseout="out()"></div>
+        <input type="text" @focus="focus()" @blur="blur()">
+    </div>
+    <script src="vue.js"></script>
+    <script>
+    new Vue({
+        el: "#app",
+        data: {
+
+        },
+        methods: {
+            fun: function() {
+                alert('ok');
+            },
+            // 获取坐标点
+            getPoint: function(ent) {
+                console.log(ent);
+                // 获取鼠标距body的坐标点
+                console.log(ent.pageX);
+                console.log(ent.pageY);
+
+                // 获取鼠标在div上的相对位置
+                console.log(ent.offsetX);
+                console.log(ent.offsetY);
+            },
+            over: function() {
+                console.log('鼠标移入');
+            },
+            out: function() {
+                console.log('鼠标移出');
+            },
+            focus: function() {
+                console.log('文本域被聚焦');
+            },
+            blur: function() {
+                console.log('文本域被失焦');
+            }
+        }
+    })
+    </script>
+</body>
+
+</html>
